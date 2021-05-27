@@ -1,0 +1,7 @@
+# log into the container and manage everything with drush
+docker exec -it <containername> bash
+
+#you will be in the directory /var/www/html. Run drush commands as normal.
+
+# if an admin user doesn't already exist, create one
+drush user-create myname --mail=“my@email.com” --password=“password”; drush user-add-role "administrator" myname
