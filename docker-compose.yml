@@ -26,7 +26,7 @@ services:
       ports:
         - 3306:3306
       volumes:
-        - ./mysql:/docker-entrypoint-initdb.d
+        - ./mysqlinit:/docker-entrypoint-initdb.d
         - mysql-data-d8:/var/lib/mysql
       restart: always
   
