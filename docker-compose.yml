@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+    drupal:
+      #image: drupal:7.80-php7.4-apache
+      image: drupal
+      build: ./drupal
+      #env_file:
+      #  - ./docker/environment.env
+      ports:
+        - "80:80"
+      depends_on:
+        - mysql
+      restart: always
+      volumes:
+        - ./docroot:/var/www/html
+    mysql:
+      image: mariadb
+      command: --max_allowed_packet=256M
+      restart: always
+      environment:
+        MYSQL_DATABASE: "stihl"
+        #MYSQL_USER: "drupal"
+        MYSQL_ROOT_PASSWORD: "drupal"
+      hostname: mysql
+      ports:
+        - 3306:3306
+      volumes:
+        - ./mysql:/docker-entrypoint-initdb.d
+        - mysql-data-d8:/var/lib/mysql
+      restart: always
+  
+volumes:
+  docroot:
+  mysql-data-d8:
