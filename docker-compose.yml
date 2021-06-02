@@ -14,6 +14,7 @@ services:
       restart: always
       volumes:
         - ./docroot:/var/www/html
+      container_name: drupal
     mysql:
       image: mariadb
       command: --max_allowed_packet=256M
@@ -26,9 +27,10 @@ services:
       ports:
         - 3306:3306
       volumes:
-        - ./mysqlinit:/docker-entrypoint-initdb.d
-        - mysql-data-d8:/var/lib/mysql
+        #- ./mysqlinit:/docker-entrypoint-initdb.d
+        - ./mysql-data-d8:/var/lib/mysql
       restart: always
+      container_name: mysql
   
 volumes:
   docroot:
