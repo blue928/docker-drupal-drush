@@ -50,7 +50,7 @@ RUN composer global require drupal/coder; \
 	composer global require drupal/coder dealerdirect/phpcodesniffer-composer-installer
 
 # Install Drush
-RUN composer global require drush/drush:8.3.3 && \
+RUN composer global require drush/drush:8.3.3 --with-all-dependencies && \
     composer global update
 
 # Don't install drush with composer. See this SO issue
